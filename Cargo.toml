@@ -1,0 +1,10 @@
+[package]
+name = "mdspa"
+version = "0.0.0"
+authors = [ "Edmund Wu" ]
+edition = "2018"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"

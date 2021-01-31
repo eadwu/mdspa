@@ -1,0 +1,18 @@
+# See https://docs.bazel.build/versions/master/user-manual.html#bazelrc.
+
+# Global Configuration
+# --------------------
+common --incompatible_require_linker_input_cc_api
+
+# test environment does not propagate locales by default some tests reads files
+# written in UTF8, we need to propagate the correct environment variables, such
+# as LOCALE_ARCHIVE We also need to setup an utf8 locale
+test --test_env=LANG=C.UTF-8 --test_env=LOCALE_ARCHIVE
+
+# Platform / Toolchain Selection
+# ------------------------------
+build --host_platform=@io_tweag_rules_nixpkgs//nixpkgs/platforms:host
+
+# User Configuration
+# ------------------
+try-import %workspace%/.bazelrc.local

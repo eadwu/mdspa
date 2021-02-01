@@ -101,7 +101,7 @@ stack_snapshot(
         "rts",
         "text",
         # External libraries
-        # "split-0.2.3.4",
+        "pretty-simple",  # -3.3.0.0
     ],
     snapshot = "nightly-2020-12-14",
 )

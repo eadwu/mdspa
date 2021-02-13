@@ -31,3 +31,28 @@ toolchain(
     toolchain = ":rust_1.49.0",
     toolchain_type = "@io_bazel_rules_rust//rust:toolchain",
 )
+
+# Rust Parser Library
+load("@io_bazel_rules_rust//rust:rust.bzl", "rust_library")
+
+rust_library(
+    name = "mdspa",
+    srcs = glob(["src/**/*.rs"]),
+    crate_root = "src/Main.rs",
+    rustc_env = {
+        "CARGO_PKG_VERSION": "0.0.0",
+    },
+)
+
+# Haskell Lexer Binary
+load("@rules_haskell//haskell:defs.bzl", "haskell_binary")
+
+haskell_binary(
+    name = "mdspa-lexer",
+    srcs = glob(["src/**/*.hs"]),
+    deps = [
+        "@stackage//:base",
+        "@stackage//:mtl",
+        "@stackage//:pretty-simple",
+    ],
+)
